@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WeatherData2._0.Models.DayDetail>
+
+@{ ViewData["Title"] = "DayDetail"; }
+
+<h1>Details</h1>
+
+<div>
+    <h4>Day details</h4>
+    <hr />
+    @*<p>
+            <a asp-action="Create">Create New</a>
+        </p>*@
+    <form asp-action="Day" method="get">
+        <div class="form-actions no-color">
+            <p>
+                <a asp-action="Index"> Back </a>
+            </p>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    <a asp-action="Details" asp-route-sortOrder="@ViewData["DateSortParm"]"> @Html.DisplayNameFor(model => model.Date) </a>
+                </th>
+                <th>
+                    <a asp-action="Details" asp-route-sortOrder="@ViewData["InsideTempSortParm"]"> @Html.DisplayNameFor(model => model.InsideTemperature) </a>
+                </th>
+                <th>
+                    <a asp-action="Details" asp-route-sortOrder="@ViewData["OutsideTempSortParm"]"> @Html.DisplayNameFor(model => model.OutsideTemperature) </a>
+                </th>
+                <th>
+                    <a asp-action="Details" asp-route-sortOrder="@ViewData["InsideHumiditySortParm"]"> @Html.DisplayNameFor(model => model.InsideHumidity) </a>
+                </th>
+                <th>
+                    <a asp-action="Details" asp-route-sortOrder="@ViewData["OutsideHumiditySortParm"]"> @Html.DisplayNameFor(model => model.OutsideHumidity) </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.Date.ToString("HH:mm")
+            </td>
+            <td>
+                @if (item.InsideTemperature != null)
+                {
+                @Html.DisplayFor(modelItem => item.InsideTemperature)}
+            </td>
+            <td>
+                @if (item.OutsideTemperature != null)
+                {
+                @Html.DisplayFor(modelItem => item.OutsideTemperature)}
+            </td>
+            <td>
+                @if (item.InsideHumidity != null)
+                {
+                @Html.DisplayFor(modelItem => item.InsideHumidity)}
+            </td>
+            <td>
+                @if (item.OutsideHumidity != null)
+                {
+                @Html.DisplayFor(modelItem => item.OutsideHumidity)}
+            </td>
+        </tr>
+}
+        </tbody>
+    </table>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

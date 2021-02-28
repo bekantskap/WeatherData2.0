@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WeatherData2._0.Models.DayAvr>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Average per day</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<form asp-action="Index" method="get">
+
+    <div class="form-actions no-color">
+
+        <p>
+            Find by temp: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            <input type="submit" value="Search" class="btn btn-default" /> |
+            <a asp-action="Index"> Back to Full List</a>
+            @*<a asp-action="CurrentFilter"> Inside Data</a>
+            <a asp-action="CurrentFilter2"> Outside Data</a>*@
+        </p>
+    </div>
+
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["DateSortParm"]"> @Html.DisplayNameFor(model => model.Date) </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IndoorTemperatureSortParm"]"> @Html.DisplayNameFor(model => model.IndoorTemperature) </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["IndoorHumiditySortParm"]"> @Html.DisplayNameFor(model => model.IndoorHumidity) </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OutdoorTemperatureSortParm"]"> @Html.DisplayNameFor(model => model.OutdoorTemperature) </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["OutdoorHumiditySortParm"]"> @Html.DisplayNameFor(model => model.OutdoorHumidity) </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndoorTemperature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IndoorHumidity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutdoorTemperature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OutdoorHumidity)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Date">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
